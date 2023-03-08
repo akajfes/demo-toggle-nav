@@ -2,3 +2,119 @@ body {
     background-color: #192f5e;
     font-family: sans-serif;
 }
+
+.inner-container {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Step 1: Style the default showing state of the menu, starting with the mobile view.
+Style the layout and link for how they will look when visible */
+header {
+    background-color: #fff;
+    padding: 2rem 0;
+}
+
+h1 a{
+    text-decoration: none;
+}
+
+.menu li {
+    line-height: 40px;
+    text-align: center;
+}
+
+.menu li:last-of-type {
+    padding-bottom: 1rem;
+}
+
+.menu a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: block;
+}
+
+.menu a:hover,
+.menu a:active {
+    background-color: gainsboro;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #fff;
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+svg {
+    fill: #3f3f3f;
+}
+
+/* Step 2: Hide the menu. Once it's hidden, this will be the default stage on load. 
+FYI = the display property cannot be transitioned:
+header nav {
+    display: none;
+    transition: display 1s ease-in-out;
+}, so we can hide the nav by making it's max-height (NOT height) 0*/
+header nav {
+    /* styling this so it overlaps the main content
+    this element will be absolute to the viewport 
+    make sure to add in left and top values [left: 0, top: height of the header]*/
+    position: absolute;
+    left: 0;
+    top: 110px;
+    background-color: #fff;
+    width: 100vw;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease-in-out;
+}
+
+/* Step 3: Create a special class to show the menu. This class name will only exist in the CSS for now.
+Then then JS will add thiss class to the hidden element for us (in this case, the nav) */
+.show-nav {
+    max-height: 220px;
+}
+
+/* Step 4: add a media query and show the nav by default, hide the button, and style it as a horizontal nav */
+@media screen and (min-width: 700px) {
+    .inner-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .toggle-button {
+        display: none;
+    }
+
+    header nav {
+        max-height: 200px;
+        width: unset; /*a way to reverse anything we did before and to restore things to their default value*/
+        overflow: visible;
+        position: static;
+    }
+
+    ul.menu {
+        display: flex;
+        gap: 1rem;
+    }
+
+    ul.menu a {
+        padding: 0 0.75rem;
+    }
+
+    .menu li:last-of-type {
+        padding-bottom: 0;
+    }
+}
