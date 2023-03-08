@@ -3,7 +3,8 @@ body {
     font-family: sans-serif;
 }
 
-.inner-container {
+.inner-container,
+main {
     max-width: 75rem;
     margin: 0 auto;
     padding: 0 1rem;
